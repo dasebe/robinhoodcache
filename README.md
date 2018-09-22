@@ -12,7 +12,7 @@ RobinHood's goal is to
   - to facilitate research into different resource allocation policies and tail latency
 
 A detailed description of RobinHood will be available in the paper
-​
+
     RobinHood: Tail Latency Aware Caching - Dynamic Reallocation from Cache-Rich to Cache-Poor
     Daniel S. Berger, Benjamin Berg, Timothy Zhu, Siddhartha Sen, Mor Harchol-Balter. 
     To appear in USENIX OSDI in October 2018.
