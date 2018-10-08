@@ -11,9 +11,11 @@ RobinHood's goal is to
   - be compatible with off-the-shelf in-memory caches (such as memcached)
   - to facilitate research into different resource allocation policies and tail latency
 
-A detailed description of RobinHood will be available in the paper
+## Code will be released after OSDI 2018
+
+[Paper and presentation at USENIX OSDI](https://www.usenix.org/conference/osdi18/presentation/berger)
 
     RobinHood: Tail Latency Aware Caching - Dynamic Reallocation from Cache-Rich to Cache-Poor
     Daniel S. Berger, Benjamin Berg, Timothy Zhu, Siddhartha Sen, Mor Harchol-Balter. 
-    To appear in USENIX OSDI in October 2018.
+    USENIX OSDI, October 2018.
 
