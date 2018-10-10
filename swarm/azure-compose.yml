@@ -78,6 +78,7 @@ services:
             - logging:/logs
         environment:
             - CONFIG
+            - CONFIG_URL
             - MYSQL_DATA_URL
             - DEBUG=${DEBUG_MYSQL}
             - DOWNLOAD=${DOWNLOAD_MYSQL}
@@ -102,6 +103,7 @@ services:
             - logging:/logs
         environment:
             - CONFIG
+            - CONFIG_URL
             - MYSQL_DATA_URL
             - DEBUG=${DEBUG_MYSQL}
             - DOWNLOAD=${DOWNLOAD_MYSQL}
@@ -121,6 +123,7 @@ services:
         image: ${registry}/mysql_backend
         environment:
             - CONFIG
+            - CONFIG_URL
             - MYSQL_DATA_URL
             - DOWNLOAD=${DOWNLOAD_MYSQL}
             - DOWNLOAD2=${DOWNLOAD_7385C12D}
@@ -162,6 +165,7 @@ services:
         image: ${registry}/mysql_backend
         environment:
             - CONFIG
+            - CONFIG_URL
             - MYSQL_DATA_URL
             - DOWNLOAD=${DOWNLOAD_MYSQL}
             - DOWNLOAD2=${DOWNLOAD_B293D37D}
@@ -182,6 +186,7 @@ services:
         image: ${registry}/mysql_backend
         environment:
             - CONFIG
+            - CONFIG_URL
             - MYSQL_DATA_URL
             - DOWNLOAD=${DOWNLOAD_MYSQL}
             - DOWNLOAD2=${DOWNLOAD_9EE74B0B}
@@ -213,6 +218,7 @@ services:
             - logging:/logs
         environment:
             - CONFIG
+            - CONFIG_URL
             - MYSQL_DATA_URL
             - DEBUG=${DEBUG_MYSQL}
             - DOWNLOAD=${DOWNLOAD_MYSQL}
@@ -239,6 +245,7 @@ services:
             - logging:/logs
         environment:
             - CONFIG
+            - CONFIG_URL
             - MYSQL_DATA_URL
             - DEBUG=${DEBUG_MYSQL}
             - DOWNLOAD=${DOWNLOAD_MYSQL}
@@ -259,6 +266,7 @@ services:
             - logging:/logs
         environment:
             - CONFIG
+            - CONFIG_URL
             - MYSQL_DATA_URL
             - DEBUG=${DEBUG_MYSQL}
             - DOWNLOAD=${DOWNLOAD_MYSQL}
@@ -279,6 +287,7 @@ services:
             - logging:/logs
         environment:
             - CONFIG
+            - CONFIG_URL
             - MYSQL_DATA_URL
             - DEBUG=${DEBUG_MYSQL}
             - DOWNLOAD=${DOWNLOAD_MYSQL}
@@ -428,6 +437,7 @@ services:
             - nuapp 
         environment:
             - TRACE_URL
+            - CONFIG_URL
             - CONFIG
             - DEBUG=${DEBUG_REQUESTOR}
             - DOWNLOAD=${DOWNLOAD_REQUESTOR}

@@ -8,7 +8,7 @@ then
 fi
 eth0=$(ifconfig | grep eth1 -A 2 | grep "inet" | awk '{print $2}')
 pushd src
-curl https://robinhoodbucket.blob.core.windows.net/cmurobinhood/${CONFIG}.tar.gz -o ${CONFIG}.tar.gz
+curl ${CONFIG_URL}/${CONFIG}.tar.gz -o ${CONFIG}.tar.gz
 tar -xzvf ${CONFIG}.tar.gz
 mv config /config
 ./start_controller.sh ${eth0} &

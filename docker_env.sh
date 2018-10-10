@@ -3,14 +3,17 @@
 #the URL of the docker registry you will be using
 export REPO=
 
-#config name
-export CONFIG=
-
 # the URL of the data which will populate mysql backends
 export MYSQL_DATA_URL=
 
 # the URL of the trace data
 export TRACE_URL=
+
+# the base URL where configs are hosted (default is our example)
+export CONFIG_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood
+
+# config directory basename (default is our example)
+export CONFIG=azure2
 
 # per container debug flag (container will start, sleep, and user can login start service manually)
 

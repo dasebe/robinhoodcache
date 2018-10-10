@@ -6,7 +6,7 @@ elif [[ ! $SKIP_UNPACK ]]
 then
     sleep 10m
 fi
-curl https://robinhoodbucket.blob.core.windows.net/cmurobinhood/${CONFIG}.tar.gz -o ${CONFIG}.tar.gz
+curl ${CONFIG_URL}/${CONFIG}.tar.gz -o ${CONFIG}.tar.gz
 tar -xzvf ${CONFIG}.tar.gz
 mv config /config
 pushd /bootstrap
