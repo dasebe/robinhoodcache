@@ -55,3 +55,10 @@ The RobinHood testbed is built on top of Docker Swarm. Each of the components is
  - go/src/mysql_backend: mysql-based I/O-bound database backend
  - go/src/fback: source code of a CPU-bound matrix multiplication backend
  - go/src/statserver: central statistics server, which keeps the 10 million recent measurements in a ring buffer and calculates key metrics like tail percentiles
+ 
+ ### Compiling the testbed
+ 
+ To begin, fill in the relevant, testbed-specific information in docker_env.sh .  Then type:
+    source docker_env.sh
+    ./push_images.sh
+to compile the testbed and push the images to the specified docker container registry.
