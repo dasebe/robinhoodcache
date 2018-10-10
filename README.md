@@ -58,7 +58,9 @@ The RobinHood testbed is built on top of Docker Swarm. Each of the components is
  
  ### Compiling the testbed
  
- To begin, fill in the relevant, testbed-specific information in docker_env.sh .  Then type:
+To begin, fill in the relevant, testbed-specific information in `docker_env.sh` .  Then type:
+    
     source docker_env.sh
     ./push_images.sh
+    
 to compile the testbed and push the images to the specified docker container registry.
