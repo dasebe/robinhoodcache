@@ -71,7 +71,9 @@ to compile the testbed and push the images to the specified docker container reg
 
 ### Deployment Parameters
 
-See docker_env.sh
+See `docker_env.sh` for a description of available parameters.
+
+In addition to these parameters, every deployment uses a set of configs to determine features of the experiment.  The default behavior of `docker_env.sh` is to specify a sample config located at https://robinhoodbucket.blob.core.windows.net/cmurobinhood .
 
 ### Format of Request Traces
 
