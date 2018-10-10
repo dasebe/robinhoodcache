@@ -1,6 +1,5 @@
 #! /bin/bash
 echo $1
-REPO=
 
 tag_and_push (){
     image=$1
