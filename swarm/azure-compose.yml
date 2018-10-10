@@ -1,0 +1,489 @@
+version: "3.3"
+
+services:
+
+    nuapp:
+        image: ${registry}/nuapp
+        networks:
+            - overlay
+        ports:
+            - 8000:80
+        volumes:
+            - logging:/logs
+        depends_on:
+            - b4fbebd8
+        environment:
+            - CONFIG
+            - DEBUG=${DEBUG_NUAPP}
+            - DOWNLOAD=${DOWNLOAD}
+            - BYPASS=${BYPASS_CACHES}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        deploy:
+            mode: global
+            placement:
+                constraints:
+                    - node.labels.data == nuapp
+
+    63956c27:
+        image: ${registry}/fback
+        networks:
+            - overlay
+        volumes:
+            - logging:/logs
+        environment:
+            - CONFIG
+            - DEBUG=${DEBUG_MYSQL}
+        deploy:
+            mode: global
+            placement:
+                constraints:
+                    - node.labels.data == 63956c27
+
+    5b63fdf5:
+        image: ${registry}/fback
+        networks:
+            - overlay
+        volumes:
+            - logging:/logs
+        environment:
+            - CONFIG
+            - DEBUG=${DEBUG_MYSQL}
+        deploy:
+            mode: global
+            placement:
+                constraints:
+                    - node.labels.data == 5b63fdf5
+
+    812126d3:
+        image: ${registry}/fback
+        networks:
+            - overlay
+        volumes:
+            - logging:/logs
+        environment:
+            - CONFIG
+            - DEBUG=${DEBUG_MYSQL}
+        deploy:
+            mode: global
+            placement:
+                constraints:
+                    - node.labels.data == 812126d3
+
+    d6018659:
+        image: ${registry}/mysql_backend
+        networks:
+            - overlay
+        volumes:
+            - backend_volume:/bootstrap
+            - logging:/logs
+        environment:
+            - CONFIG
+            - MYSQL_DATA_URL
+            - DEBUG=${DEBUG_MYSQL}
+            - DOWNLOAD=${DOWNLOAD_MYSQL}
+            - DOWNLOAD2=${DOWNLOAD_D6018659}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        deploy:
+            mode: global
+            resources:
+                limits:
+                    cpus: '2.00'
+                    memory: 5000M
+            placement:
+                constraints:
+                    - node.labels.data == d6018659
+
+    b4fbebd8:
+        image: ${registry}/mysql_backend
+        networks:
+            - overlay
+        volumes:
+            - backend_volume:/bootstrap
+            - logging:/logs
+        environment:
+            - CONFIG
+            - MYSQL_DATA_URL
+            - DEBUG=${DEBUG_MYSQL}
+            - DOWNLOAD=${DOWNLOAD_MYSQL}
+            - DOWNLOAD2=${DOWNLOAD_B4FBEBD8}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        deploy:
+            mode: global
+            resources:
+                limits:
+                    cpus: '16.00'
+                    memory: 20000M
+            placement:
+                constraints:
+                    - node.labels.data == b4fbebd8
+
+    7385c12d:
+        image: ${registry}/mysql_backend
+        environment:
+            - CONFIG
+            - MYSQL_DATA_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood/b4fbeb.tar.gz
+            - DOWNLOAD=${DOWNLOAD_MYSQL}
+            - DOWNLOAD2=${DOWNLOAD_7385C12D}
+            - DEBUG=${DEBUG_MYSQL}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        volumes:
+            - backend_volume:/bootstrap
+            - logging:/logs
+        networks:
+            - overlay
+        deploy:
+            mode: global
+            resources:
+                limits:
+                    cpus: '8.00'
+                    memory: 15000M
+            placement:
+                constraints:
+                    - node.labels.data == 7385c12d
+
+    64c1ce15:
+        image: ${registry}/fback
+        environment:
+            - CONFIG
+            - DEBUG=${DEBUG_MYSQL}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        volumes:
+            - backend_volume:/bootstrap
+            - logging:/logs
+        networks:
+            - overlay
+        deploy:
+            mode: global
+            placement:
+                constraints:
+                    - node.labels.data == 64c1ce15
+
+    b293d37d:
+        image: ${registry}/mysql_backend
+        environment:
+            - CONFIG
+            - MYSQL_DATA_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood/b4fbeb.tar.gz
+            - DOWNLOAD=${DOWNLOAD_MYSQL}
+            - DOWNLOAD2=${DOWNLOAD_B293D37D}
+            - DEBUG=${DEBUG_MYSQL}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        volumes:
+            - backend_volume:/bootstrap
+            - logging:/logs
+        networks:
+            - overlay
+        deploy:
+            mode: global
+            placement:
+                constraints:
+                    - node.labels.data == b293d37d
+
+    9ee74b0b:
+        image: ${registry}/mysql_backend
+        environment:
+            - CONFIG
+            - MYSQL_DATA_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood/b4fbeb.tar.gz
+            - DOWNLOAD=${DOWNLOAD_MYSQL}
+            - DOWNLOAD2=${DOWNLOAD_9EE74B0B}
+            - DEBUG=${DEBUG_MYSQL}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        volumes:
+            - backend_volume:/bootstrap
+            - logging:/logs
+        networks:
+            - overlay
+        deploy:
+            mode: global
+            resources:
+                limits:
+                    cpus: '8.00'
+                    memory: 10000M
+            placement:
+                constraints:
+                    - node.labels.data == 9ee74b0b
+
+
+
+    39f00c48:
+        image: ${registry}/mysql_backend
+        networks:
+            - overlay
+        volumes:
+            - backend_volume:/bootstrap
+            - logging:/logs
+        environment:
+            - CONFIG
+            - MYSQL_DATA_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood/b4fbeb.tar.gz
+            - DEBUG=${DEBUG_MYSQL}
+            - DOWNLOAD=${DOWNLOAD_MYSQL}
+            - DOWNLOAD2=${DOWNLOAD_39F00C48}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        deploy:
+            mode: global
+            resources:
+                limits:
+                    cpus: '4.00'
+                    memory: 10000M
+            placement:
+                constraints:
+                    - node.labels.data == 39f00c48
+
+
+
+    e5fffc73:
+        image: ${registry}/mysql_backend
+        networks:
+            - overlay
+        volumes:
+            - backend_volume:/bootstrap
+            - logging:/logs
+        environment:
+            - CONFIG
+            - MYSQL_DATA_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood/b4fbeb.tar.gz
+            - DEBUG=${DEBUG_MYSQL}
+            - DOWNLOAD=${DOWNLOAD_MYSQL}
+            - DOWNLOAD2=${DOWNLOAD_B4FBEBD8}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        deploy:
+            mode: global
+            placement:
+                constraints:
+                    - node.labels.data == e5fffc73
+
+    1289b3bb:
+        image: ${registry}/mysql_backend
+        networks:
+            - overlay
+        volumes:
+            - backend_volume:/bootstrap
+            - logging:/logs
+        environment:
+            - CONFIG
+            - MYSQL_DATA_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood/b4fbeb.tar.gz
+            - DEBUG=${DEBUG_MYSQL}
+            - DOWNLOAD=${DOWNLOAD_MYSQL}
+            - DOWNLOAD2=${DOWNLOAD_B4FBEBD8}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        deploy:
+            mode: global
+            placement:
+                constraints:
+                    - node.labels.data == 1289b3bb
+
+    30eaf8be:
+        image: ${registry}/mysql_backend
+        networks:
+            - overlay
+        volumes:
+            - backend_volume:/bootstrap
+            - logging:/logs
+        environment:
+            - CONFIG
+            - MYSQL_DATA_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood/b4fbeb.tar.gz
+            - DEBUG=${DEBUG_MYSQL}
+            - DOWNLOAD=${DOWNLOAD_MYSQL}
+            - DOWNLOAD2=${DOWNLOAD_B4FBEBD8}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        deploy:
+            mode: global
+            placement:
+                constraints:
+                    - node.labels.data == 30eaf8be
+
+    df1794e4:
+        image: ${registry}/fback
+        networks:
+            - overlay
+        volumes:
+            - backend_volume:/bootstrap
+            - logging:/logs
+        environment:
+            - CONFIG
+            - DEBUG=${DEBUG_MYSQL}
+        deploy:
+            mode: global
+            placement:
+                constraints:
+                    - node.labels.data == df1794e4
+
+    ac59f41b:
+        image: ${registry}/fback
+        networks:
+            - overlay
+        volumes:
+            - backend_volume:/bootstrap
+            - logging:/logs
+        environment:
+            - CONFIG
+            - DEBUG=${DEBUG_MYSQL}
+        deploy:
+            mode: global
+            placement:
+                constraints:
+                    - node.labels.data == ac59f41b
+
+    4607349c:
+        image: ${registry}/fback
+        networks:
+            - overlay
+        volumes:
+            - logging:/logs
+        environment:
+            - CONFIG
+            - DEBUG=${DEBUG_MYSQL}
+        deploy:
+            mode: global
+            resources:
+                limits:
+                    cpus: '2.00'
+                    memory: 5000M
+            placement:
+                constraints:
+                    - node.labels.data == small
+
+    6a2ef110:
+        image: ${registry}/fback
+        networks:
+            - overlay
+        volumes:
+            - logging:/logs
+        environment:
+            - CONFIG
+            - DEBUG=${DEBUG_MYSQL}
+        deploy:
+            mode: global
+            resources:
+                limits:
+                    cpus: '2.00'
+                    memory: 5000M
+            placement:
+                constraints:
+                    - node.labels.data == small
+
+    c1042784:
+        image: ${registry}/fback
+        networks:
+            - overlay
+        volumes:
+            - logging:/logs
+        environment:
+            - CONFIG
+            - DEBUG=${DEBUG_MYSQL}
+        deploy:
+            mode: global
+            resources:
+                limits:
+                    cpus: '2.00'
+                    memory: 5000M
+            placement:
+                constraints:
+                    - node.labels.data == small
+
+    e8fc6018:
+        image: ${registry}/fback
+        networks:
+            - overlay
+        volumes:
+            - logging:/logs
+        environment:
+            - CONFIG
+            - DEBUG=${DEBUG_MYSQL}
+        deploy:
+            mode: global
+            resources:
+                limits:
+                    cpus: '2.00'
+                    memory: 5000M
+            placement:
+                constraints:
+                    - node.labels.data == small
+
+    b02bdd0d:
+        image: ${registry}/fback
+        networks:
+            - overlay
+        volumes:
+            - logging:/logs
+        environment:
+            - CONFIG
+            - DEBUG=${DEBUG_MYSQL}
+        deploy:
+            mode: global
+            resources:
+                limits:
+                    cpus: '2.00'
+                    memory: 5000M
+            placement:
+                constraints:
+                    - node.labels.data == small
+
+    requestor:
+        image: ${registry}/requestor
+        networks:
+            - overlay
+        volumes:
+            - http_requestor_volume:/bootstrap
+            - logging:/logs
+        depends_on:
+            - nuapp 
+        environment:
+            - TRACE_URL=https://storage.googleapis.com/robinhoodcmu/synth3.tar.gz
+            - CONFIG
+            - DEBUG=${DEBUG_REQUESTOR}
+            - DOWNLOAD=${DOWNLOAD_REQUESTOR}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        deploy:
+            placement:
+                constraints:
+                    - node.labels.data == requestor
+
+
+    stat_server:
+        image: ${registry}/stat_server
+        networks:
+            - overlay
+        depends_on:
+            - nuapp
+        volumes:
+            - logging:/logs
+        environment:
+            - CONFIG
+            - DEBUG=${DEBUG_STAT_SERVER}
+            - VERBOSE=${VERBOSE_STAT_SERVER}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        ports:
+            - 9999:80
+        deploy:
+            placement:
+                constraints:
+                    - node.labels.data == stats
+
+    monitor:
+        image: ${registry}/monitor
+        networks:
+            - overlay
+        volumes:
+            - logging:/logs
+            - /var/run/docker.sock:/var/run/docker.sock
+        depends_on:
+            - stat_server
+        environment:
+            - CONFIG
+            - DEBUG=${DEBUG_MONITOR}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        deploy:
+            mode: global
+
+networks:
+    overlay:
+        driver: overlay
+        ipam:
+            driver: default
+            config:
+                - subnet: 192.168.9.0/24
+
+volumes:
+    http_requestor_volume:
+    logging:
+    mixed_s3_volume:
+    backend_volume:
