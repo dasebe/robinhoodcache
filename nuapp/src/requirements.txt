@@ -1,0 +1,2 @@
+-e git+https://github.com/bsb20/pymemcache#egg=pymemcache
+requests
