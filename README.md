@@ -39,6 +39,7 @@ The testbed consists of:
  - a request generator (to replay traces of production traffic)
  - an application server, which queries backend systems and aggregates the result (key metrics like request latency are measured here)
  - several types of backends, which are either I/O bound or CPU bound
+ - a resource monitor, which runs on every physical server and reports local CPU, network, etc. statistics
  - a central statistics server that aggregates measurements and compiles a live view of the system performance (see below)
  
 <img src="https://raw.githubusercontent.com/dasebe/robinhoodcache/master/plots/dashboard.png" width=800px />
@@ -54,6 +55,7 @@ The RobinHood testbed is built on top of Docker Swarm. Each of the components is
    - nuapp/src/shadowcache and nuapp/src/statquery: helper libraries to debug the cache state and send information to the stats server
  - go/src/mysql_backend: mysql-based I/O-bound database backend
  - go/src/fback: source code of a CPU-bound matrix multiplication backend
+ - monitor/src/monitor: the source code of the resource monitor (integrated with docker)
  - go/src/statserver: central statistics server, which keeps the 10 million recent measurements in a ring buffer and calculates key metrics like tail percentiles
  
  ### Compiling the testbed
@@ -66,9 +68,13 @@ To begin, fill in the relevant, testbed-specific information in `docker_env.sh` 
 to compile the testbed and push the images to the specified docker container registry.
 
 
+### Deployment Parameters
+
+See docker_env.sh
+
 ### Format of Request Traces
 
-A request trace fully describes a sequence of requests, which in themselves consist of queries to backend systems. In our trace format, a single request is written as a JSON object on a single line. The line includes an optional time stamp ("t") and a list of the queries ("d"). For a typical fanout, the list has one entry: a dictionary that maps backends to their queries. Backends are identified by a hash, e.g., "b4fbebd8". The backend queries are a dictionary which lists the object sizes ("S"), the hashed object URLs ("U"), and whether the queries are cacheable ("C", 1 means cacheable).
+A request trace fully describes a sequence of requests, which in themselves consist of queries to backend systems. In our trace format, a single request is written as a JSON object on a single line. The line includes an optional time stamp ("t") and a list of the queries ("d"). For a typical fanout, the list has one entry: a dictionary that maps backends to their queries. Backends are identified by a hash, e.g., "b4fbebd8" (backend names correspond to the names of docker swarm services and are resolved automatically inside containers). The backend queries are a dictionary which lists the object sizes ("S"), the hashed object URLs ("U"), and whether the queries are cacheable ("C", 1 means cacheable).
 
 Example trace:
 
