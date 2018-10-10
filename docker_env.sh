@@ -10,10 +10,9 @@ export MYSQL_DATA_URL=
 export TRACE_URL=
 
 # the base URL where configs are hosted (default is our example)
-export CONFIG_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood
-
+export CONFIG_URL=https://github.com/dasebe/robinhoodcache/raw/master/configs
 # config directory basename (default is our example)
-export CONFIG=azure2
+export CONFIG=example_config
 
 # per container debug flag (container will start, sleep, and user can login start service manually)
 
