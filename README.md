@@ -23,3 +23,12 @@ RobinHood's goal is to
     Daniel S. Berger, Benjamin Berg, Timothy Zhu, Siddhartha Sen, Mor Harchol-Balter. 
     USENIX OSDI, October 2018.
 
+## RobinHood's Source Code
+
+To test RobinHood, we built a testbed that emulates a large webservice like xbox.com. The testbed consists of:
+
+ - a request generator (to replay traces of production traffic)
+ - an application server, which queries backend systems and aggregates the result (key metrics like request latency are measured here)
+ - several types of backends, which are either I/O bound or CPU bound
+ - a central statistics server that aggregates measurements and compiles a live view of the system performance
+ 
