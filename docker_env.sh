@@ -6,6 +6,10 @@ export REPO=
 # the URL of the data which will populate mysql backends
 export MYSQL_DATA_URL=
 
+# per container debug flag (container will start, sleep, and user can login start service manually)
 
-#debugging variables, set to 1 to start the corresponding container in debug mode
-
+export DEBUG_NUAPP=
+export DEBUG_MYSQL=
+export DEBUG_REQUESTOR=
+export DEBUG_STAT_SERVER=
+export DEBUG_MONITOR=
