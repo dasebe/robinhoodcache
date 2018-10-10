@@ -85,17 +85,16 @@ Example trace:
 
 See `docker_env.sh` for a description of available parameters.
 
-In addition to these parameters, every deployment uses a set of configs to determine features of the experiment.  The default behavior of `docker_env.sh` is to specify a sample config located at https://robinhoodbucket.blob.core.windows.net/cmurobinhood .
-
+In addition to these parameters, every deployment uses a set of configs to determine features of the experiment.  The default behavior of `docker_env.sh` is to specify a [sample config located](https://github.com/dasebe/robinhoodcache/raw/master/configs/example_config.tar.gz).
 
 ### Deployment
 
 To deploy the RobinHood testbed you will need to set up a [docker swarm cluster](https://docs.docker.com/v17.09/engine/swarm/). We used more than 50-100 Azure servers in our experiments, running Ubuntu 17.10 and Docker version 18.03. At least the servers running the backends will need to have a local disk mounted at /ssd. You will also need to set up a Docker container registry. Once all nodes have joined the swarm
 
  - authenticate the swarm manager with the registry
- - the swarm manager needs to pull all RobinHood images from your registry
- - the swarm nodes need to be tagged with their roles (i.e., labeled with the type of container that is going to run there)
+ - the swarm manager and every swarm node needs to pull all RobinHood images from your registry (can be automated via docker swarm)
  - update the deployment parameters and verify that all containers in the config file (swarm/robinhood-compose.yml) are pulled and ready to go
+- the swarm nodes need to be tagged with their roles (i.e., labeled with the type of container that is going to run there)
  - finally, you can deploy the docker stack from our compose file
   
 The last two steps are automated by a bash script (swarm/swarm.sh).
