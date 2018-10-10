@@ -3,6 +3,8 @@
 RobinHood is a research caching system for application servers in large web services.
 A single user request to such an application server results in multiple queries to complex, diverse backend services (databases, recommender systems, ad systems, etc.).
 
+### Key Ideas
+
 RobinHood dynamically partition the cache space between the different backend services and continuously optimizes the partition sizes.
 
 RobinHood's goal is to
@@ -11,7 +13,7 @@ RobinHood's goal is to
   - be compatible with off-the-shelf in-memory caches (such as memcached)
   - to facilitate research into different resource allocation policies and tail latency
 
-## More about RobinHood
+### The RobinHood Algorithm and Implementation Details
 
 [Presentation at USENIX OSDI](https://www.usenix.org/conference/osdi18/presentation/berger)
 
