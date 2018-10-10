@@ -121,7 +121,7 @@ services:
         image: ${registry}/mysql_backend
         environment:
             - CONFIG
-            - MYSQL_DATA_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood/b4fbeb.tar.gz
+            - MYSQL_DATA_URL
             - DOWNLOAD=${DOWNLOAD_MYSQL}
             - DOWNLOAD2=${DOWNLOAD_7385C12D}
             - DEBUG=${DEBUG_MYSQL}
@@ -162,7 +162,7 @@ services:
         image: ${registry}/mysql_backend
         environment:
             - CONFIG
-            - MYSQL_DATA_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood/b4fbeb.tar.gz
+            - MYSQL_DATA_URL
             - DOWNLOAD=${DOWNLOAD_MYSQL}
             - DOWNLOAD2=${DOWNLOAD_B293D37D}
             - DEBUG=${DEBUG_MYSQL}
@@ -182,7 +182,7 @@ services:
         image: ${registry}/mysql_backend
         environment:
             - CONFIG
-            - MYSQL_DATA_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood/b4fbeb.tar.gz
+            - MYSQL_DATA_URL
             - DOWNLOAD=${DOWNLOAD_MYSQL}
             - DOWNLOAD2=${DOWNLOAD_9EE74B0B}
             - DEBUG=${DEBUG_MYSQL}
@@ -213,7 +213,7 @@ services:
             - logging:/logs
         environment:
             - CONFIG
-            - MYSQL_DATA_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood/b4fbeb.tar.gz
+            - MYSQL_DATA_URL
             - DEBUG=${DEBUG_MYSQL}
             - DOWNLOAD=${DOWNLOAD_MYSQL}
             - DOWNLOAD2=${DOWNLOAD_39F00C48}
@@ -239,7 +239,7 @@ services:
             - logging:/logs
         environment:
             - CONFIG
-            - MYSQL_DATA_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood/b4fbeb.tar.gz
+            - MYSQL_DATA_URL
             - DEBUG=${DEBUG_MYSQL}
             - DOWNLOAD=${DOWNLOAD_MYSQL}
             - DOWNLOAD2=${DOWNLOAD_B4FBEBD8}
@@ -259,10 +259,10 @@ services:
             - logging:/logs
         environment:
             - CONFIG
-            - MYSQL_DATA_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood/b4fbeb.tar.gz
+            - MYSQL_DATA_URL
             - DEBUG=${DEBUG_MYSQL}
             - DOWNLOAD=${DOWNLOAD_MYSQL}
-            - DOWNLOAD2=${DOWNLOAD_B4FBEBD8}
+            - DOWNLOAD2=${DOWNLOAD_1289B3BB}
             - SKIP_UNPACK=${SKIP_UNPACK}
         deploy:
             mode: global
@@ -279,10 +279,10 @@ services:
             - logging:/logs
         environment:
             - CONFIG
-            - MYSQL_DATA_URL=https://robinhoodbucket.blob.core.windows.net/cmurobinhood/b4fbeb.tar.gz
+            - MYSQL_DATA_URL
             - DEBUG=${DEBUG_MYSQL}
             - DOWNLOAD=${DOWNLOAD_MYSQL}
-            - DOWNLOAD2=${DOWNLOAD_B4FBEBD8}
+            - DOWNLOAD2=${DOWNLOAD_30EAF8BE}
             - SKIP_UNPACK=${SKIP_UNPACK}
         deploy:
             mode: global
@@ -427,7 +427,7 @@ services:
         depends_on:
             - nuapp 
         environment:
-            - TRACE_URL=https://storage.googleapis.com/robinhoodcmu/synth3.tar.gz
+            - TRACE_URL
             - CONFIG
             - DEBUG=${DEBUG_REQUESTOR}
             - DOWNLOAD=${DOWNLOAD_REQUESTOR}
