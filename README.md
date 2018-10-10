@@ -52,6 +52,7 @@ The RobinHood testbed is built on top of Docker Swarm. Each of the components is
  - nuapp/src/: the application server, which consists of
    - nuapp/src/appserver: the main source code
    - nuapp/src/subquery: schedules, tracks, and caches queries to backend servers
+   - nuapp/src/controller.py: the cache controller which implements RobinHood and several other static and dynamic partitioning policies
    - nuapp/src/shadowcache and nuapp/src/statquery: helper libraries to debug the cache state and send information to the stats server
  - go/src/mysql_backend: mysql-based I/O-bound database backend
  - go/src/fback: source code of a CPU-bound matrix multiplication backend
