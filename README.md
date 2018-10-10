@@ -68,16 +68,11 @@ To begin, fill in the relevant, testbed-specific information in `docker_env.sh` 
     
 to compile the testbed and push the images to the specified docker container registry.
 
-
-### Deployment Parameters
-
-See `docker_env.sh` for a description of available parameters.
-
-In addition to these parameters, every deployment uses a set of configs to determine features of the experiment.  The default behavior of `docker_env.sh` is to specify a sample config located at https://robinhoodbucket.blob.core.windows.net/cmurobinhood .
-
 ### Format of Request Traces
 
 A request trace fully describes a sequence of requests, which in themselves consist of queries to backend systems. In our trace format, a single request is written as a JSON object on a single line. The line includes an optional time stamp ("t") and a list of the queries ("d"). For a typical fanout, the list has one entry: a dictionary that maps backends to their queries. Backends are identified by a hash, e.g., "b4fbebd8" (backend names correspond to the names of docker swarm services and are resolved automatically inside containers). The backend queries are a dictionary which lists the object sizes ("S"), the hashed object URLs ("U"), and whether the queries are cacheable ("C", 1 means cacheable).
+
+We are currently (October 2018) working on releasing a request trace.
 
 Example trace:
 
@@ -86,7 +81,24 @@ Example trace:
     {"t": 0, "d": [{"02129bb8": {"S": [34908], "U": ["dd6bd7c22aa542aeb"], "C": [1]}, "7385c12d": {"S": [37858], "U": ["c142d7ef7415bf3a8"], "C": [1]}, "c1042784": {"S": [37856], "U": ["48dd2200faaaa4a76"], "C": [1]}, "1289b3bb": {"S": [37857], "U": ["427bc1d6a9fe40e0d"], "C": [1]}, "b4fbebd8": {"S": [14060], "U": ["958b74446d06a9d97"], "C": [1]}}]}
 
 
+### Deployment Parameters
 
+See `docker_env.sh` for a description of available parameters.
+
+In addition to these parameters, every deployment uses a set of configs to determine features of the experiment.  The default behavior of `docker_env.sh` is to specify a sample config located at https://robinhoodbucket.blob.core.windows.net/cmurobinhood .
+
+
+### Deployment
+
+To deploy the RobinHood testbed you will need to set up a [docker swarm cluster](https://docs.docker.com/v17.09/engine/swarm/). We used more than 50-100 Azure servers in our experiments, running Ubuntu 17.10 and Docker version 18.03. At least the servers running the backends will need to have a local disk mounted at /ssd. You will also need to set up a Docker container registry. Once all nodes have joined the swarm
+
+ - authenticate the swarm manager with the registry
+ - the swarm manager needs to pull all RobinHood images from your registry
+ - the swarm nodes need to be tagged with their roles (i.e., labeled with the type of container that is going to run there)
+ - update the deployment parameters and verify that all containers in the config file (swarm/robinhood-compose.yml) are pulled and ready to go
+ - finally, you can deploy the docker stack from our compose file
+  
+The last two steps are automated by a bash script (swarm/swarm.sh).
 
 # External libraries
 
