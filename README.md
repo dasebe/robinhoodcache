@@ -64,3 +64,16 @@ To begin, fill in the relevant, testbed-specific information in `docker_env.sh` 
     ./push_images.sh
     
 to compile the testbed and push the images to the specified docker container registry.
+
+
+
+
+# External libraries
+
+This software uses
+
+  - [Golang](https://golang.org/)
+  - [Memcached](http://memcached.org/)
+  - [MySQL](https://www.mysql.com/)
+  - [Our fork of pymemcache](https://github.com/bsb20/pymemcache)
+  - Several Golang libraries like [Go-SQL-Driver](https://github.com/go-sql-driver/mysql) and [Gomemcache](https://github.com/bradfitz/gomemcache)
