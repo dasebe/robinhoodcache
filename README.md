@@ -87,7 +87,7 @@ Example trace ([longer example](https://github.com/dasebe/robinhoodcache/blob/ma
 
 See `docker_env.sh` for a description of available parameters.
 
-In addition to these parameters, every deployment uses a set of configs to determine features of the experiment.  The default behavior of `docker_env.sh` is to specify a [sample config located](https://github.com/dasebe/robinhoodcache/raw/master/configs/example_config.tar.gz).
+In addition to these parameters, every deployment uses a set of configs to determine features of the experiment.  The default behavior of `docker_env.sh` is to specify a [sample config located here](https://github.com/dasebe/robinhoodcache/raw/master/configs/example_config.tar.gz).
 
 ### Deployment
 
@@ -100,6 +100,39 @@ To deploy the RobinHood testbed you will need to set up a [docker swarm cluster]
  - finally, you can deploy the docker stack from our compose file
   
 The last two steps are automated by a bash script (swarm/swarm.sh).
+
+### Minimal Working Example
+
+We have included a minimial working example that will run a small RobinHood instance locally.  This can be helpful for testing and getting a sense of how all the pieces fit together.  The first step is to turn your test host into a 1 machine docker swarm by running 
+
+    docker swarm init
+    
+Next, source the included environment for running the local example configuration, as well as `utils.sh`:
+
+    source example_env.sh
+    source utils.sh
+All docker images can be built and accessed locally, so do not be concerned if you do not have a container registry specified.  If you have not already done so, make sure you build all the docker images by running:
+
+    ./push_images.sh
+
+To start the RobinHood example, `cd` to the swarm directory and run `swarm.sh`:
+
+    cd swarm
+    ./swarm.sh
+    
+You should now see the various RobinHood services, as well as 2 backend services, start up.  To check the status of the swarm, type:
+
+    docker service ls
+    
+To get a shell inside any running service, use the `docker_ssh` function defined in `utils.sh` as follows:
+
+    docker_ssh robinhood_requestor
+
+where `robinhood_requestor` could be replaced by any service name.
+
+To stop the experiment, run
+    
+    ./stop_swarm.sh
 
 # External libraries
 
