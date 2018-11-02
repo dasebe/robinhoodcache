@@ -111,7 +111,10 @@ Next, source the included environment for running the local example configuratio
 
     source example_env.sh
     source utils.sh
-    
+All docker images can be built and accessed locally, so do not be concerned if you do not have a container registry specified.  If you have not already done so, make sure you build all the docker images by running:
+
+    ./push_images.sh
+
 To start the RobinHood example, `cd` to the swarm directory and run `swarm.sh`:
 
     cd swarm
