@@ -20,7 +20,9 @@ In our experiments (testbed source code in this repo), RobinHood is effective at
 
 ### The RobinHood Algorithm and Implementation Details
 
-[Presentation at USENIX OSDI](https://www.usenix.org/conference/osdi18/presentation/berger)
+[Presentation at USENIX OSDI](https://www.usenix.org/conference/osdi18/presentation/berger) (includes audio)
+
+[Morning Paper Blog Post by Adrian Colyer](https://blog.acolyer.org/2018/10/26/robinhood-tail-latency-aware-caching-dynamic-reallocation-from-cache-rich-to-cache-poor/)
 
 [Paper (PDF)](https://www.usenix.org/system/files/osdi18-berger.pdf). Cite as:
 
