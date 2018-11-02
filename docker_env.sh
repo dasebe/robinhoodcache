@@ -14,6 +14,9 @@ export CONFIG_URL=https://github.com/dasebe/robinhoodcache/raw/master/configs
 # config directory basename (default is our example)
 export CONFIG=example_config
 
+#compose file name
+export COMPOSE_FILE=robinhood-compose.yml
+
 # per container debug flag (container will start, sleep, and user can login start service manually)
 
 export DEBUG_NUAPP=
