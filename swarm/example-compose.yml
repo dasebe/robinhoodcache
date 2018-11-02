@@ -1,0 +1,124 @@
+version: "3.3"
+
+services:
+    nuapp:
+        image: nuapp
+        networks:
+            - overlay
+        ports:
+            - 8000:80
+        volumes:
+            - logging:/logs
+        environment:
+            - CONFIG
+            - CONFIG_URL
+            - DEBUG=${DEBUG_NUAPP}
+            - DOWNLOAD=${DOWNLOAD}
+            - BYPASS=${BYPASS_CACHES}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        deploy:
+            mode: global
+
+    9ee74b0b:
+        image: fback
+        environment:
+            - CONFIG
+            - CONFIG_URL
+            - DEBUG=${DEBUG_MYSQL}
+        volumes:
+            - backend_volume:/bootstrap
+            - logging:/logs
+        networks:
+            - overlay
+        deploy:
+            mode: global
+            resources:
+                limits:
+                    cpus: '2.00'
+                    memory: 10000M
+
+    39f00c48:
+        image: fback
+        networks:
+            - overlay
+        volumes:
+            - backend_volume:/bootstrap
+            - logging:/logs
+        environment:
+            - CONFIG
+            - CONFIG_URL
+            - DEBUG=${DEBUG_MYSQL}
+        deploy:
+            mode: global
+            resources:
+                limits:
+                    cpus: '2.00'
+                    memory: 10000M
+
+    requestor:
+        image: requestor
+        networks:
+            - overlay
+        volumes:
+            - http_requestor_volume:/bootstrap
+            - logging:/logs
+        depends_on:
+            - nuapp 
+        environment:
+            - TRACE_URL
+            - CONFIG_URL
+            - CONFIG
+            - DEBUG=${DEBUG_REQUESTOR}
+            - DOWNLOAD=${DOWNLOAD_REQUESTOR}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        deploy:
+
+
+    stat_server:
+        image: stat_server
+        networks:
+            - overlay
+        depends_on:
+            - nuapp
+        volumes:
+            - logging:/logs
+        environment:
+            - CONFIG
+            - CONFIG_URL
+            - DEBUG=${DEBUG_STAT_SERVER}
+            - VERBOSE=${VERBOSE_STAT_SERVER}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        ports:
+            - 9999:80
+        deploy:
+
+    monitor:
+        image: monitor
+        networks:
+            - overlay
+        volumes:
+            - logging:/logs
+            - /var/run/docker.sock:/var/run/docker.sock
+        depends_on:
+            - stat_server
+        environment:
+            - CONFIG
+            - CONFIG_URL
+            - DEBUG=${DEBUG_MONITOR}
+            - SKIP_UNPACK=${SKIP_UNPACK}
+        deploy:
+            mode: global
+
+networks:
+    overlay:
+        driver: overlay
+        ipam:
+            driver: default
+            config:
+                - subnet: 192.168.9.0/24
+
+volumes:
+    http_requestor_volume:
+    logging:
+    mixed_s3_volume:
+    backend_volume:

@@ -9,8 +9,11 @@ tag_and_push (){
     export GOPATH=$(pwd)
     make $image
     status=$?
-    docker tag $image $REPO/$image
-    docker push $REPO/$image
+    if [[ -n $REPO ]]
+    then
+        docker tag $image $REPO/$image
+        docker push $REPO/$image
+    fi
     popd
 #    ./ecr_policy.sh $1 $region
     return $?

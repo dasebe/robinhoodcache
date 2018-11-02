@@ -37,4 +37,4 @@ untag_hosts
 tag_managers requestor stats nuapp
 tag_workers nuapp nuapp nuapp nuapp nuapp nuapp nuapp nuapp nuapp nuapp nuapp nuapp nuapp nuapp nuapp b4fbebd8 b4fbebd8 b4fbebd8 b4fbebd8 b4fbebd8 b4fbebd8 b4fbebd8 b4fbebd8 63956c27  63956c27 39f00c48 39f00c48 39f00c48 d6018659 7385c12d 7385c12d 7385c12d 64c1ce15 b293d37d 9ee74b0b 9ee74b0b 9ee74b0b small ac59f41b df1794e4 e5fffc73 1289b3bb 30eaf8be 5b63fdf5 5b63fdf5 812126d3 812126d3
 
-docker stack deploy --compose-file robinhood-compose.yml
+docker stack deploy robinhood --compose-file ${COMPOSE_FILE}

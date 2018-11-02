@@ -3,12 +3,12 @@ if [[ $DEBUG ]]
 then
     sleep 20d
 fi
-curl ${CONFIG_URL}/${CONFIG}.tar.gz -o ${CONFIG}.tar.gz
+curl -L ${CONFIG_URL}/${CONFIG}.tar.gz -o ${CONFIG}.tar.gz
 tar -xzvf ${CONFIG}.tar.gz
 pushd /bootstrap
 if [[ ! -e "./data.tar.gz" || $DOWNLOAD || $DOWNLOAD2 ]]
 then
-    curl $MYSQL_DATA_URL > ./data.tar.gz || (echo "curl failed: $MYSQL_DATA_URL" && rm data.tar.gz && exit 5)
+    curl -L $MYSQL_DATA_URL > ./data.tar.gz || (echo "curl failed: $MYSQL_DATA_URL" && rm data.tar.gz && exit 5)
 fi
 if [[ ! $SKIP_UNPACK ]]
 then
