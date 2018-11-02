@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 
-# two backends
-#  39f00c48
-#  b4fbebd8
+# generates an example trace with a few objects, 2/3 cache hit ratio, and for two backends (39f00c48, b4fbebd8)
+# CLI parameter: trace length (number of requests in trace)
 
 import random
 import json
