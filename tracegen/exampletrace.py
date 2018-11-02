@@ -18,7 +18,7 @@ for t in range(0, int(sys.argv[1])):
     idx1 = random.randrange(len(objects))
     idx2 = random.randrange(len(objects))
     idx3 = random.randrange(len(objects))
-    urls1 = [objects[idx1][0],objects[idx2][0]]
+    urls1 = [objects[idx1][0],objects[idx2][0]+str(t)]
     urls2 = [objects[idx3][0]]
     sizes1 = [objects[idx1][1],objects[idx2][1]]
     sizes2 = [objects[idx3][1]]
