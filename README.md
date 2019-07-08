@@ -134,6 +134,16 @@ To stop the experiment, run
     
     ./stop_swarm.sh
 
+## Reproducing the paper experiments and extending RobinHood
+
+You are welcome to clone this repository and experiment with your own variant of RobinHood. A few pointers for your endeavor.
+
+First, why did we experiment on real servers? We actually tried extensive simulations at first, and found out that it was almost impossible to navigate the huge parameter space. If there is sufficient interest (e.g., in a github issue), we can share the simulator code.
+
+Second, the results in the final paper are based exclusively on the code base in this repo, running on 10s of servers in Azure. As a disclaimer: the deployment to get this all running is somewhat complex. A major fraction of this complexity is due to limitations in Docker Swarm (e.g. container network performance) and memcached (e.g., cache resizing and central mutexes). Anticipate that you will you need to read extensively about these.
+
+Third, for future work, there remain several open questions and loose ends. The discussion section of the [RobinHood Paper](https://www.usenix.org/system/files/osdi18-berger.pdf) is a good starting point for these. Additional research time is probably well spent on the infrastructure for a system such as RobinHood, e.g., to make caching systems (such as memcached) better support dynamically resizing of partitions, while receiving high request rates.
+
 # External libraries
 
 This software uses
